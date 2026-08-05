@@ -34,3 +34,7 @@ public class selectionSort {
 
     }
 }
+// Time complexities
+// best O(n^2)
+// avg O(n^2)
+// worst O(n^2)

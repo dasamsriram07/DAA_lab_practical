@@ -37,3 +37,8 @@ public class bubbleSort{
 
     }
 }
+
+// Time complexities
+// best O(n)
+// avg O(n^2)
+// worst O(n^2)
