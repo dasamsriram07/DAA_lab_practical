@@ -15,3 +15,5 @@ public class factIterat {
         System.out.println("the factorial of "+n +" is "+fact(n));
     }
 }
+// Time complexity is O(n)
+// as the loop is running n times

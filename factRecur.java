@@ -9,3 +9,5 @@ public class factRecur{
         System.out.println(fact(5));
     }
 }
+// Time complexity is O(n)
+// T(n) = T(n-1)
