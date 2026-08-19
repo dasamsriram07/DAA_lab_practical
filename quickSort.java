@@ -1,4 +1,6 @@
- public class quickSort{
+import java.util.Scanner;
+
+public class quickSort{
  public static void  quickSort(int arr[], int si, int ei){
         if(si>=ei){
             return;
@@ -23,6 +25,7 @@
             }
         }
         i++;
+        // swaping arr[i+1] and arr[ei]
         int temp =pivot;
          arr[ei]=arr[i]; //pivot =arr[i] wrong
         arr[i]=temp;
@@ -34,7 +37,16 @@
         }
     }
     public static void main(String[] args) {
-        int arr[] = {3,2,5,6,9,8};
+        // int arr[] = {3,2,5,6,9,8};
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the size of array");
+        int n = sc.nextInt();
+
+        int arr[] = new int[n];
+        System.out.println("enter the elements of array");
+        for(int i=0;i<n;i++){
+            arr[i] = sc.nextInt();
+        }
         quickSort(arr, 0, arr.length-1);
         printArr(arr);
     }

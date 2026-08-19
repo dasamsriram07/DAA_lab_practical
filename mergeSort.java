@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class mergeSort {
 
     public static void mergeSort(int arr[], int si, int ei){
@@ -45,7 +47,16 @@ public class mergeSort {
         }
     }
     public static void main(String args[]){
-        int arr[] = {56,12,56,46,35,785};
+        // int arr[] = {56,12,56,46,35,785};
+         Scanner sc = new Scanner(System.in);
+        System.out.println("enter the size of array");
+        int n = sc.nextInt();
+
+        int arr[] = new int[n];
+        System.out.println("enter the elements of array");
+        for(int i=0;i<n;i++){
+            arr[i] = sc.nextInt();
+        }
         mergeSort(arr, 0, arr.length-1);
         printArr(arr);
     }
