@@ -38,3 +38,4 @@ public class selectionSort {
 // best O(n^2)
 // avg O(n^2)
 // worst O(n^2)
+// here in firstly the loop of j will be checking all the elements till it is completing

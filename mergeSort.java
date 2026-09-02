@@ -6,7 +6,7 @@ public class mergeSort {
         if(si>=ei){
             return;
         }
-        int mid = si + (ei-si)/2;
+        int mid = si + (ei-si)/2; // or (si+ei)/2
         mergeSort(arr, si, mid);
         mergeSort(arr, mid+1, ei);
         merge(arr,si,mid,ei);

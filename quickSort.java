@@ -24,6 +24,8 @@ public class quickSort{
 
             }
         }
+        // or lese directly swap arr[i+1] and arr[ei]
+        // then return i+1
         i++;
         // swaping arr[i+1] and arr[ei]
         int temp =pivot;

@@ -2,10 +2,10 @@ import java.util.*;
 
 public class heapSort{
 
-    public static void heapify(int arr[], int i , int size ){
+    public static void heapify(int arr[], int i , int size ){ // for finding the max heap like swaping left or right child with root if they are not in corr pos
         int left = 2*i+1;
         int right = 2*i+2;
-        int maxIdx = i; //assume firstly root
+        int maxIdx = i; //assume firstly root as max index
 
         if(left<size && arr[left] > arr[maxIdx]){
             maxIdx= left;
@@ -27,7 +27,7 @@ public class heapSort{
     public static void heapSORT(int arr[]){
          // step1 build maxHeap
          int n = arr.length;
-         for(int i=n/2;i>=0;i--){
+         for(int i=n/2;i>=0;i--){ //n/2 beacuse leaf nodes no need to heapify
             heapify(arr,i,n); //O(n/2*logn)
          }
 
