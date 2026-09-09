@@ -1,3 +1,4 @@
+import java.util.*;
 public class tab_0_1_knapsack {//O(nW)
 
     public static int knapsackTab(int val[] , int wt[] , int W){
@@ -17,8 +18,8 @@ public class tab_0_1_knapsack {//O(nW)
                 int w = wt[i-1]; //ith tem wt
 
                 if(w<=j){ //valid
-                    int incProfit = v  + dp[i-1][j-w];
-                    int excProfit = dp[i-1][j];
+                    int incProfit = v  + dp[i-1][j-w]; // it's own profit and 
+                    int excProfit = dp[i-1][j]; //upper value
 
                     dp[i][j] = Math.max(incProfit, excProfit);
 
@@ -42,9 +43,23 @@ public class tab_0_1_knapsack {//O(nW)
         System.out.println();
     }
     public static void main(String[] args) {
-        int val[] = {15,14,10,45,30};
-        int wt[] = {2,5,1,3,4};
-        int W = 7;
+        Scanner sc = new Scanner(System.in);
+        int W = sc.nextInt();
+        System.out.println("Enter capacity of the bag: "+ W);
+        int n = sc.nextInt();
+        System.out.println("Enter the no.of items of the bag: " + n);
+
+        int val[] = new int[n];
+        for(int i=0;i<n;i++){
+            val[i]=sc.nextInt();
+        }
+        int wt[] = new int[n];
+        for(int i=0;i<n;i++){
+            wt[i]=sc.nextInt();
+        }
+        // int val[] = {15,14,10,45,30};
+        // int wt[] = {2,5,1,3,4};
+        // int W = 7;
         int dp[][] = new int [val.length+1][W+1];
         for(int i=0;i<dp.length;i++){
             for(int j=0;j<dp[0].length;j++){
