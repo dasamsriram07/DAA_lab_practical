@@ -44,16 +44,19 @@ public class tab_0_1_knapsack {//O(nW)
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Enter capacity of the bag: ");
         int W = sc.nextInt();
-        System.out.println("Enter capacity of the bag: "+ W);
+        
+        System.out.println("Enter the no.of items of the bag: " );
         int n = sc.nextInt();
-        System.out.println("Enter the no.of items of the bag: " + n);
 
         int val[] = new int[n];
+        System.out.println("enter the values of the profit");
         for(int i=0;i<n;i++){
             val[i]=sc.nextInt();
         }
         int wt[] = new int[n];
+        System.out.println("enter the values of the weights");
         for(int i=0;i<n;i++){
             wt[i]=sc.nextInt();
         }
