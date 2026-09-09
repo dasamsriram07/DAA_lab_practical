@@ -13,7 +13,7 @@ public class coinChange {
             } else if (j % coins[0] == 0) {
                 T[0][j] = j / coins[0];
             } else {
-                T[0][j] = W + 1;
+                T[0][j] = W + 1;// when we cannot make the amount with the coin
             }
         }
 
