@@ -1,11 +1,15 @@
 import java.util.*;
 public class tab_0_1_knapsack {//O(nW)
 
+    static boolean[][] keep;
+
     public static int knapsackTab(int val[] , int wt[] , int W){
         int n = val.length;
         int dp[][] = new int[n+1][W+1];
+        keep = new boolean[n + 1][W + 1];
 
-        for(int i=0;i<dp.length;i++){ //0th col
+        for(int i=0;i<
+            dp.length;i++){ //0th col
             dp[i][0] = 0;
         }
         for(int j=0;j<dp.length;j++){ //0th row
@@ -22,6 +26,7 @@ public class tab_0_1_knapsack {//O(nW)
                     int excProfit = dp[i-1][j]; //upper value
 
                     dp[i][j] = Math.max(incProfit, excProfit);
+                    keep[i][j] = incProfit > excProfit;
 
                 }else{//invalid
                      int excProfit = dp[i-1][j];
@@ -35,13 +40,29 @@ public class tab_0_1_knapsack {//O(nW)
 
     public static void print(int dp[][]){
         for(int i =0;i<dp.length;i++){
-            for(int j = 0;j<dp[0].length;j++){
+            for(int j =0;j<dp[0].length;j++){
                 System.out.print(dp[i][j]+" ");
             }
             System.out.println();
         }
         System.out.println();
     }
+
+    public static void printSelectedItems(int val[],int wt[], int W) {
+        int i = wt.length;
+        int j = W;
+
+        System.out.println("Selected items:");
+
+        while (i > 0 && j > 0) {
+            if (keep[i][j]) {
+                System.out.println("Item " + i + ":Weight = "+ wt[i-1] + ":profit = "+ val[i-1]);
+                j -= wt[i - 1];
+            }
+            i--;
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter capacity of the bag: ");
@@ -71,7 +92,9 @@ public class tab_0_1_knapsack {//O(nW)
         }
 
         // System.out.println(knapsack(val, wt, W, val.length));
-        System.out.println(knapsackTab(val, wt, W));
+        int maxProfit = knapsackTab(val, wt, W);
+        System.out.println("Maximum profit = " + maxProfit);
+        printSelectedItems(val,wt, W);
         
     }
 }

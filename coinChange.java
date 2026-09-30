@@ -2,9 +2,12 @@ import java.util.*;
 
 public class coinChange {
 
+    static int[] selected;
+
     public static int minCoins(int coins[], int W) {
         int n = coins.length;
         int T[][] = new int[n][W + 1];
+        selected = new int[n];
 
         // base case
         for (int j = 0; j <= W; j++) {
@@ -29,7 +32,31 @@ public class coinChange {
             }
         }
 
+        if (T[n - 1][W] <= W) {
+            int i = n - 1;
+            int amount = W;
+
+            while (amount > 0 && i >= 0) {
+                if (i > 0 && T[i][amount] == T[i - 1][amount]) {
+                    i--;
+                } else {
+                    selected[i]++;
+                    amount -= coins[i];
+                }
+            }
+        }
+
         return (T[n - 1][W] > W) ? -1 : T[n - 1][W]; //last row last col 
+    }
+
+    public static void printSelectedCoins(int coins[]) {
+        System.out.println("Selected denominations:");
+
+        for (int i = 0; i < coins.length; i++) {
+            if (selected[i] > 0) {
+                System.out.println(coins[i] + " denomination: " + selected[i] + " coin");
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -53,6 +80,7 @@ public class coinChange {
             System.out.println("Amount cannot be formed with given coins");
         } else {
             System.out.println("Minimum number of coins: " + result);
+            printSelectedCoins(coins);
         }
 
         

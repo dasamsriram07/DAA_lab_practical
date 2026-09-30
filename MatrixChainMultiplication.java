@@ -1,9 +1,10 @@
 import java.util.*;
-public class MatrixChainMultiplication {
+public class MatrixChainMultiplication { //O(n^3)
+    static int split[][];
     public static int matrixChain(int p[]) {
         int n = p.length - 1; // no of matrices
         int m[][] = new int[n + 1][n + 1];
-
+        split = new int[n+1][n+1];
         for (int i = 1; i <= n; i++) {
             m[i][i] = 0;// for diagonal values
         }
@@ -18,12 +19,22 @@ public class MatrixChainMultiplication {
                                p[i - 1] * p[k] * p[j];
                     if (cost < m[i][j]) {
                         m[i][j] = cost;
+                        split[i][j] = k;
                     }
                 }
             }
         }
 
         return m[1][n];
+    }
+
+    public static String grouping(int i , int j){
+        if(i==j){
+            return "A" + i;
+        }
+
+        int k = split[i][j];
+        return "(" + grouping(i, k)+grouping(k+1, j) + ")";
     }
 
     public static void main(String[] args) {
@@ -38,5 +49,6 @@ public class MatrixChainMultiplication {
         System.out.println(
             "Minimum multiplications = " + matrixChain(p)
         );
+        System.out.println("Grouped"+ grouping(1, n));
     }
 }
