@@ -133,25 +133,3 @@ Shortest Distance Matrix:
 INF 0 2 
 INF INF 0 
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile
-javac Practical11/FloydWarshall.java
-
-# Run
-java Practical11.FloydWarshall
-```
-
----
-
-## Learning Outcomes
-
-- Formulated the All-Pairs Shortest Path problem using dynamic programming state transitions.
-- Mastered the intermediate-vertex relaxation technique (`i -> k -> j`).
-- Understood space optimization allowing an in-place 2D matrix representation without losing accuracy.

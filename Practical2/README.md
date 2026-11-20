@@ -85,28 +85,3 @@ enter key value:
 ```text
 element is found at 2
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile searching programs
-javac Practical2/*.java
-
-# Run Linear Search
-java Practical2.linearSearch
-
-# Run Binary Search
-java Practical2.binarySearch
-```
-
----
-
-## Learning Outcomes
-
-- Learned when sequential scanning (`O(n)`) is appropriate vs. when sorting upfront (`O(n log n)`) pays off for repeated logarithmic queries (`O(log n)`).
-- Practiced proper boundary conditions and index manipulation in binary search loops.
-- Prevented common pitfalls such as off-by-one array bounds errors and negative return indicators.

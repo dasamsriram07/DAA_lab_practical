@@ -88,37 +88,3 @@ Enter the elements of array:
 ```text
 11 12 22 25 64
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile all sorting implementations
-javac Practical1/*.java
-
-# Run Bubble Sort
-java Practical1.bubbleSort
-
-# Run Selection Sort
-java Practical1.selectionSort
-
-# Run Insertion Sort
-java Practical1.insertion_sort
-
-# Run Merge Sort
-java Practical1.mergeSort
-
-# Run Quick Sort
-java Practical1.quickSort
-```
-
----
-
-## Learning Outcomes
-
-- Mastered both elementary comparison-based sorting (`O(n^2)`) and divide-and-conquer (`O(n log n)`) techniques.
-- Analyzed the trade-off between auxiliary memory usage (Merge Sort's `O(n)` buffer) and runtime guarantees.
-- Identified practical scenarios where Insertion Sort outperforms advanced algorithms (e.g. nearly sorted lists or small subarrays).

@@ -116,25 +116,3 @@ Enter weighted adjacency matrix (0 for no edge):
 0 - 1 : 10
 Minimum Cost: 19
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile
-javac Practical9/Prim.java
-
-# Run
-java Practical9.Prim
-```
-
----
-
-## Learning Outcomes
-
-- Gained deep understanding of the Greedy Choice Property and MST Cut Property.
-- Implemented vertex-growing MST expansion from an initial seed vertex.
-- Validated conditions for graph connectedness and cycle avoidance.

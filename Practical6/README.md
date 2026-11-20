@@ -125,25 +125,3 @@ K Table:
 Minimum multiplications = 4500
 Grouped ((A1A2)A3)
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile
-javac Practical6/MatrixChainMultiplication.java
-
-# Run
-java Practical6.MatrixChainMultiplication
-```
-
----
-
-## Learning Outcomes
-
-- Learned interval-length dynamic programming where smaller subproblems correspond to shorter subchains.
-- Understood why brute-force evaluation is intractable due to Catalan number exponential growth.
-- Mastered split-point memoization and recursive reconstruction of optimal operation trees.

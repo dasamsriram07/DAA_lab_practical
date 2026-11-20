@@ -108,25 +108,3 @@ Enter cost matrix:
 ```text
 Minimum Cost: 80
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile
-javac Practical12/TSP.java
-
-# Run
-java Practical12.TSP
-```
-
----
-
-## Learning Outcomes
-
-- Modeled an NP-hard optimization problem using permutation search trees.
-- Mastered the recursive Backtracking pattern (Choose -> Explore -> Un-choose).
-- Understood why exhaustive search scales factorially and motivates pruning and heuristic strategies.

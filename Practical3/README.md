@@ -86,25 +86,3 @@ Enter the size of array
 ```text
 1 3 4 5 10 
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile
-javac Practical3/heapSort.java
-
-# Run
-java Practical3.heapSort
-```
-
----
-
-## Learning Outcomes
-
-- Learned implicit tree representation in flat linear arrays without dynamic node pointers.
-- Understood why `buildHeap` takes `O(n)` time despite calling a function with worst-case cost `O(log n)`.
-- Gained hands-on experience with in-place `O(n log n)` sorting with zero additional array allocations.

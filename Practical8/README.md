@@ -114,31 +114,3 @@ Enter starting vertex: 0
 DFS: 0 1 2 3 
 BFS: 0 1 3 2 
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile all graph programs
-javac Practical8/*.java
-
-# Run Standalone BFS
-java Practical8.BFS
-
-# Run Standalone DFS
-java Practical8.DFS
-
-# Run Unified Graph Class
-java Practical8.Graph
-```
-
----
-
-## Learning Outcomes
-
-- Gained practical proficiency in implementing graph traversals in Java.
-- Understood the duality between queues (BFS) and stacks/recursion (DFS).
-- Analyzed the impact of Adjacency Matrix lookup cost (`O(V^2)`) on traversal performance.

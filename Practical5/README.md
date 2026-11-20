@@ -121,25 +121,3 @@ Item 4:Weight = 2:profit = 15
 Item 2:Weight = 1:profit = 10
 Item 1:Weight = 2:profit = 12
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile
-javac Practical5/tab_0_1_knapsack.java
-
-# Run
-java Practical5.tab_0_1_knapsack
-```
-
----
-
-## Learning Outcomes
-
-- Formulated optimization decisions as recursive subproblems and converted them to iterative bottom-up table fills.
-- Avoided exponential recalculation (`O(2^n)` in naive recursion) using memoization/tabulation.
-- Implemented state tracking to reconstruct the exact items forming the maximum profit.

@@ -126,25 +126,3 @@ Enter weighted adjacency matrix (0 for no edge):
 0 - 1 : 10
 Minimum Cost: 19
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile
-javac Practical10/Krushkal.java
-
-# Run using Krushkal or Kruskal
-java Practical10.Krushkal
-```
-
----
-
-## Learning Outcomes
-
-- Understood how forest-based edge-growing produces the same MST weight as tree-based vertex-growing (Prim's).
-- Implemented Disjoint Set Union (Union-Find) and grasped the mechanics of cycle prevention.
-- Analyzed the performance difference between edge-sorting in Kruskal's vs priority-queue relaxation in Prim's.

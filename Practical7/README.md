@@ -101,25 +101,3 @@ Selected denominations:
 1 denomination: 1 coin
 5 denomination: 2 coin
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile
-javac Practical7/coinChange.java
-
-# Run
-java Practical7.coinChange
-```
-
----
-
-## Learning Outcomes
-
-- Demonstrated the limitation of greedy algorithms and proved optimality via Dynamic Programming.
-- Formulated an unbounded knapsack variant with infinite supply per item.
-- Implemented state reconstruction to determine the frequency distribution of selected coins.

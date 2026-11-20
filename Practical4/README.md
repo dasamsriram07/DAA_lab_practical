@@ -75,28 +75,3 @@ Enter the number which you want to know what is it's factorial:
 ```text
 The factorial of 5 is 120
 ```
-
----
-
-## Compilation and Execution
-
-From the root directory (`DAA_LAB`):
-
-```bash
-# Compile both implementations
-javac Practical4/*.java
-
-# Run Iterative Factorial
-java Practical4.factIterat
-
-# Run Recursive Factorial
-java Practical4.factRecur
-```
-
----
-
-## Learning Outcomes
-
-- Understood how recursion translates into runtime stack frame allocations.
-- Identified base condition necessity to prevent infinite recursive descent.
-- Compared space-time trade-offs between clean mathematical recursive definitions and memory-efficient iterative loops.
