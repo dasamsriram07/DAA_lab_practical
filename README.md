@@ -166,4 +166,4 @@ javac -version
 
 ## Author & License
 
-Developed and curated as part of the academic curriculum for the **Design and Analysis of Algorithms Laboratory**. Code and documentation are structured for educational and reference purposes.
+Developed and curated as part of the academic curriculum for the **Design and Analysis of Algorithms Laboratory**.
