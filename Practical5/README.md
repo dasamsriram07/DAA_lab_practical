@@ -2,9 +2,9 @@
 
 ## Overview
 
-The **0/1 Knapsack Problem** is a canonical combinatorial optimization problem. Given a collection of $n$ items, each characterized by a weight $w_i$ and a value/profit $v_i$, and a knapsack of maximum weight capacity $W$, the objective is to choose a subset of items that maximizes the total value without exceeding capacity $W$.
+The **0/1 Knapsack Problem** is a canonical combinatorial optimization problem. Given a collection of `n` items, each characterized by a weight `wt[i]` and a profit/value `val[i]`, and a knapsack of maximum weight capacity `W`, the objective is to choose a subset of items that maximizes the total value without exceeding capacity `W`.
 
-The prefix **0/1** denotes that each item must either be completely included ($1$) or excluded ($0$); items cannot be divided into fractional units (unlike the Fractional Knapsack problem solved via Greedy approach).
+The name **0/1** denotes that each item must either be completely included (1) or excluded (0); fractional items are not permitted (unlike the Fractional Knapsack problem solved via Greedy approach).
 
 ---
 
@@ -12,8 +12,8 @@ The prefix **0/1** denotes that each item must either be completely included ($1
 
 - Understand the principles of **Optimal Substructure** and **Overlapping Subproblems** in dynamic programming.
 - Implement bottom-up 2D tabulation for the 0/1 Knapsack problem in Java.
-- Reconstruct the exact subset of selected items via backtracking/keep-tracking.
-- Analyze the pseudo-polynomial time and space complexity ($O(n \cdot W)$).
+- Reconstruct the exact subset of selected items via table backtracking.
+- Analyze the pseudo-polynomial time and space complexity (`O(n * W)`).
 
 ---
 
@@ -27,30 +27,37 @@ The prefix **0/1** denotes that each item must either be completely included ($1
 
 ## Dynamic Programming Formulation
 
-Let $dp[i][w]$ represent the maximum value achievable considering the first $i$ items with a sub-capacity of $w$ (where $0 \le i \le n$ and $0 \le w \le W$).
+Let `dp[i][w]` represent the maximum profit achievable considering the first `i` items with a knapsack capacity of `w` (where `0 <= i <= n` and `0 <= w <= W`).
 
 ### Base Cases
-$$dp[i][0] = 0 \quad \forall \ 0 \le i \le n$$
-$$dp[0][w] = 0 \quad \forall \ 0 \le w \le W$$
+```text
+dp[i][0] = 0   for all i (when knapsack capacity is 0)
+dp[0][w] = 0   for all w (when 0 items are available)
+```
 
 ### Recurrence Relation
-For each item $i$ (with weight $wt[i-1]$ and value $val[i-1]$):
+For each item `i` with weight `wt[i - 1]` and value `val[i - 1]`:
 
-$$
-dp[i][w] = \begin{cases}
-\max\Big(dp[i-1][w], \; val[i-1] + dp[i-1][w - wt[i-1]]\Big) & \text{if } wt[i-1] \le w \\
-dp[i-1][w] & \text{if } wt[i-1] > w
-\end{cases}
-$$
+```text
+If weight is less than or equal to current capacity (wt[i - 1] <= w):
+    dp[i][w] = max(dp[i - 1][w], val[i - 1] + dp[i - 1][w - wt[i - 1]])
+
+If weight exceeds current capacity (wt[i - 1] > w):
+    dp[i][w] = dp[i - 1][w]
+```
+
+Where:
+- `dp[i - 1][w]`: The profit if we exclude item `i`.
+- `val[i - 1] + dp[i - 1][w - wt[i - 1]]`: The profit if we include item `i` plus the best solution for the remaining capacity.
 
 ### Backtracking Selected Items
-To find which items contributed to the optimal solution:
-1. Start at cell $(i = n, w = W)$.
-2. If $dp[i][w] > dp[i-1][w]$ (or `keep[i][w] == true`), item $i$ was included:
-   - Output item $i$.
-   - Decrement capacity: $w \leftarrow w - wt[i-1]$.
-3. Decrement item pointer: $i \leftarrow i - 1$.
-4. Repeat until $i = 0$ or $w = 0$.
+To find which items contributed to the maximum profit:
+1. Start at cell `(i = n, w = W)`.
+2. While `i > 0` and `w > 0`:
+   - If `keep[i][w]` is true (or `dp[i][w] > dp[i - 1][w]`):
+     - Item `i` is included in the knapsack.
+     - Reduce capacity: `w = w - wt[i - 1]`.
+   - Decrement item pointer: `i = i - 1`.
 
 ---
 
@@ -58,31 +65,31 @@ To find which items contributed to the optimal solution:
 
 | Metric | Complexity | Explanation |
 |---|:---:|---|
-| **Time Complexity** | $O(n \cdot W)$ | A nested loop fills each of the $(n+1) \times (W+1)$ cells in constant time $O(1)$. |
-| **Space Complexity** | $O(n \cdot W)$ | Space required for the 2D DP matrix and decision boolean table. |
-| **Type** | **Pseudo-polynomial** | Polynomial in value of $W$, exponential in number of bits required to represent $W$. |
+| **Time Complexity** | `O(n * W)` | A nested loop fills each of the `(n + 1) * (W + 1)` table entries in constant time `O(1)`. |
+| **Space Complexity** | `O(n * W)` | 2D table of size `(n + 1) * (W + 1)` used for tabulation and backtracking. |
+| **Problem Classification** | **Pseudo-polynomial** | Polynomial with respect to the numerical value `W`, exponential in terms of its bit length. |
 
 ---
 
 ## Example Walkthrough
 
 ### Given Data
-- **Knapsack Capacity ($W$):** $5$
-- **Number of items ($n$):** $4$
+- **Knapsack Capacity (W):** `5`
+- **Number of items (n):** `4`
 
-| Item ($i$) | Weight ($wt$) | Value ($val$) |
+| Item (i) | Weight | Value |
 |:---:|:---:|:---:|
 | 1 | 2 | 12 |
 | 2 | 1 | 10 |
 | 3 | 3 | 20 |
 | 4 | 2 | 15 |
 
-### Optimal Solution Evaluation
-- **Subset:** Items 1, 2, and 4
-- **Total Weight:** $2 + 1 + 2 = 5 \le 5$ (Valid)
-- **Total Value:** $12 + 10 + 15 = 37$
+### Optimal Subset Choice
+- **Selected Items:** Items 1, 2, and 4
+- **Total Weight:** `2 + 1 + 2 = 5 <= 5` (Valid, fully uses capacity)
+- **Total Profit:** `12 + 10 + 15 = 37`
 
-*(Notice: Selecting Items 2, 3, and 4 yields weight $1 + 3 + 2 = 6 > 5$, which exceeds capacity and is invalid).*
+*(Notice: Picking Items 2, 3, and 4 gives weight `1 + 3 + 2 = 6`, which exceeds capacity 5 and is not allowed).*
 
 ---
 
@@ -134,5 +141,5 @@ java Practical5.tab_0_1_knapsack
 ## Learning Outcomes
 
 - Formulated optimization decisions as recursive subproblems and converted them to iterative bottom-up table fills.
-- Avoided exponential recalculation ($O(2^n)$ in naive recursion) using memoization/tabulation.
+- Avoided exponential recalculation (`O(2^n)` in naive recursion) using memoization/tabulation.
 - Implemented state tracking to reconstruct the exact items forming the maximum profit.

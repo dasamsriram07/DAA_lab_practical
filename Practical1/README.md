@@ -37,28 +37,28 @@ This practical covers the implementation, comparison, and complexity analysis of
 ## Algorithms Summary
 
 ### 1. Bubble Sort
-- **Strategy**: Repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The largest unsorted element "bubbles" to its final position at the end of each pass.
+- **Strategy**: Repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The largest unsorted element moves to its final position at the end of each pass.
 - **Characteristics**: Simple to understand, stable, in-place.
 
 ### 2. Selection Sort
 - **Strategy**: Partitions the array into sorted (left) and unsorted (right) regions. In each pass, it scans the unsorted region to find the minimum element and swaps it with the first unsorted position.
-- **Characteristics**: Performs minimal writes/swaps ($O(n)$ swaps), not stable by default, in-place.
+- **Characteristics**: Performs minimal writes/swaps (`O(n)` swaps), not stable by default, in-place.
 
 ### 3. Insertion Sort
 - **Strategy**: Iterates through input elements, progressively inserting each element into its correct sorted location among previously examined elements by shifting larger elements one position to the right.
-- **Characteristics**: Adaptive ($O(n)$ on nearly sorted arrays), stable, in-place, ideal for small input sizes ($n \le 16$).
+- **Characteristics**: Adaptive (`O(n)` on nearly sorted arrays), stable, in-place, ideal for small input sizes.
 
 ### 4. Merge Sort
 - **Strategy**: Follows the Divide-and-Conquer paradigm. Divides the array into two halves until single-element subarrays are reached, recursively sorts both halves, and merges the two sorted halves using an auxiliary buffer.
-- **Recurrence**: $T(n) = 2T(n/2) + \Theta(n)$ $\implies$ $\Theta(n \log n)$ by Master Theorem.
-- **Characteristics**: Guaranteed $O(n \log n)$ time, stable, requires $O(n)$ auxiliary space.
+- **Recurrence**: `T(n) = 2T(n/2) + O(n)` -> `O(n log n)`
+- **Characteristics**: Guaranteed `O(n log n)` time, stable, requires `O(n)` auxiliary space.
 
 ### 5. Quick Sort
-- **Strategy**: Selects a pivot element (Lomuto partition scheme using the rightmost element), partitions the array such that all items $\le$ pivot are placed left and items $>$ pivot are placed right, then recursively sorts both partitions.
+- **Strategy**: Selects a pivot element (last element), partitions the array such that all items `<= pivot` are placed on the left and items `> pivot` on the right, then recursively sorts both partitions.
 - **Recurrence**:
-  - Best / Average: $T(n) = 2T(n/2) + \Theta(n) \implies O(n \log n)$
-  - Worst Case (sorted/reverse sorted without randomization): $T(n) = T(n-1) + \Theta(n) \implies O(n^2)$
-- **Characteristics**: In-place, cache-efficient, not stable, $O(\log n)$ average recursion stack space.
+  - Best / Average: `T(n) = 2T(n/2) + O(n)` -> `O(n log n)`
+  - Worst Case (already sorted array with rightmost pivot): `T(n) = T(n - 1) + O(n)` -> `O(n^2)`
+- **Characteristics**: In-place, cache-efficient, not stable, `O(log n)` average recursion stack space.
 
 ---
 
@@ -66,11 +66,11 @@ This practical covers the implementation, comparison, and complexity analysis of
 
 | Algorithm | Best Case Time | Average Case Time | Worst Case Time | Space Complexity | Stability | In-Place? |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Bubble Sort** | $O(n)$ | $O(n^2)$ | $O(n^2)$ | $O(1)$ | Yes | Yes |
-| **Selection Sort** | $O(n^2)$ | $O(n^2)$ | $O(n^2)$ | $O(1)$ | No | Yes |
-| **Insertion Sort** | $O(n)$ | $O(n^2)$ | $O(n^2)$ | $O(1)$ | Yes | Yes |
-| **Merge Sort** | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | $O(n)$ | Yes | No |
-| **Quick Sort** | $O(n \log n)$ | $O(n \log n)$ | $O(n^2)$ | $O(\log n)$ (avg stack) | No | Yes |
+| **Bubble Sort** | `O(n)` | `O(n^2)` | `O(n^2)` | `O(1)` | Yes | Yes |
+| **Selection Sort** | `O(n^2)` | `O(n^2)` | `O(n^2)` | `O(1)` | No | Yes |
+| **Insertion Sort** | `O(n)` | `O(n^2)` | `O(n^2)` | `O(1)` | Yes | Yes |
+| **Merge Sort** | `O(n log n)` | `O(n log n)` | `O(n log n)` | `O(n)` | Yes | No |
+| **Quick Sort** | `O(n log n)` | `O(n log n)` | `O(n^2)` | `O(log n)` (avg stack) | No | Yes |
 
 ---
 
@@ -119,6 +119,6 @@ java Practical1.quickSort
 
 ## Learning Outcomes
 
-- Mastered both elementary comparison-based sorting ($O(n^2)$) and divide-and-conquer ($O(n \log n)$) techniques.
-- Analyzed the trade-off between auxiliary memory usage (Merge Sort's $O(n)$ buffer) and runtime guarantees.
+- Mastered both elementary comparison-based sorting (`O(n^2)`) and divide-and-conquer (`O(n log n)`) techniques.
+- Analyzed the trade-off between auxiliary memory usage (Merge Sort's `O(n)` buffer) and runtime guarantees.
 - Identified practical scenarios where Insertion Sort outperforms advanced algorithms (e.g. nearly sorted lists or small subarrays).

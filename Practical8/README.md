@@ -2,7 +2,7 @@
 
 ## Overview
 
-A **Graph** $G = (V, E)$ is a non-linear data structure comprising a set of vertices $V$ and a set of edges $E$ that connect pairs of vertices. Graphs model complex real-world networks such as social networks, transport routing, network topologies, dependency graphs, and state machines.
+A **Graph** `G = (V, E)` is a non-linear data structure comprising a set of vertices `V` and a set of edges `E` that connect pairs of vertices. Graphs model complex real-world networks such as social networks, transport routing, network topologies, dependency graphs, and state machines.
 
 Graph traversal is the systematic process of visiting each vertex in a graph exactly once. This practical implements and compares the two primary fundamental graph traversal algorithms:
 1. **Breadth-First Search (BFS)**: Level-by-level traversal using a FIFO Queue.
@@ -15,7 +15,7 @@ Graph traversal is the systematic process of visiting each vertex in a graph exa
 - Understand graph representations: **Adjacency Matrix** vs. **Adjacency List**.
 - Implement BFS and DFS traversal algorithms in Java.
 - Compare queue-based exploration against recursive stack-based exploration.
-- Analyze time and space complexity with respect to vertices ($V$) and edges ($E$).
+- Analyze time and space complexity with respect to vertices (`V`) and edges (`E`).
 
 ---
 
@@ -31,7 +31,7 @@ Graph traversal is the systematic process of visiting each vertex in a graph exa
 
 ## Graph Representation: Adjacency Matrix
 
-All three implementations represent the graph using an $n \times n$ **Adjacency Matrix** `graph[n][n]`:
+All three implementations represent the graph using an `n x n` **Adjacency Matrix** `graph[n][n]`:
 - `graph[i][j] = 1` indicates an edge exists from vertex `i` to vertex `j`.
 - `graph[i][j] = 0` indicates no direct edge exists.
 
@@ -43,19 +43,19 @@ For an undirected graph, the adjacency matrix is symmetric (`graph[i][j] == grap
 
 ### 1. Breadth-First Search (BFS)
 - **Data Structure**: First-In-First-Out (FIFO) **Queue**.
-- **Strategy**: Explores all neighbors of the current vertex before moving deeper. Produces the shortest path in unweighted graphs.
+- **Strategy**: Explores all immediate neighbors of the current vertex before moving deeper. Produces the shortest path in unweighted graphs.
 - **Algorithm**:
-  1. Enqueue source vertex $s$ and mark it as visited.
+  1. Enqueue source vertex `s` and mark it visited: `visited[s] = true`.
   2. While queue is not empty:
-     - Dequeue vertex $v$ and process/print it.
-     - For every unvisited adjacent vertex $u$ of $v$, mark $u$ visited and enqueue $u$.
+     - Dequeue vertex `v` and print it.
+     - For every unvisited adjacent vertex `u` of `v`, mark `visited[u] = true` and enqueue `u`.
 
 ### 2. Depth-First Search (DFS)
 - **Data Structure**: Last-In-First-Out (LIFO) **Stack** (or recursive call stack).
 - **Strategy**: Follows a path as deep as possible until a dead end is reached, then backtracks.
 - **Algorithm**:
-  1. Mark current vertex $v$ as visited and process/print it.
-  2. For every unvisited adjacent vertex $u$ of $v$, recursively call `DFS(u)`.
+  1. Mark current vertex `v` visited: `visited[v] = true` and print `v`.
+  2. For every unvisited adjacent vertex `u` of `v`, recursively call `DFS(u)`.
 
 ---
 
@@ -63,11 +63,11 @@ For an undirected graph, the adjacency matrix is symmetric (`graph[i][j] == grap
 
 | Graph Representation | Algorithm | Time Complexity | Auxiliary Space | Key Use Cases |
 |---|---|:---:|:---:|---|
-| **Adjacency Matrix** *(implemented here)* | **BFS** | $O(V^2)$ | $O(V)$ | Shortest path in unweighted graphs, level-order search. |
-| **Adjacency Matrix** *(implemented here)* | **DFS** | $O(V^2)$ | $O(V)$ | Cycle detection, topological sort, connectivity, maze solving. |
-| *Adjacency List (sparse graph optimization)* | *BFS / DFS* | $O(V + E)$ | $O(V)$ | General large sparse graphs. |
+| **Adjacency Matrix** (implemented here) | **BFS** | `O(V^2)` | `O(V)` | Shortest path in unweighted graphs, level-order search. |
+| **Adjacency Matrix** (implemented here) | **DFS** | `O(V^2)` | `O(V)` | Cycle detection, topological sort, connectivity, maze solving. |
+| *Adjacency List (sparse graph optimization)* | *BFS / DFS* | `O(V + E)` | `O(V)` | General large sparse graphs. |
 
-*Note: In an adjacency matrix of size $V \times V$, checking neighbors for every vertex requires scanning a row of length $V$, yielding $V \times O(V) = O(V^2)$ total operations.*
+*Note: In an adjacency matrix of size `V x V`, finding all neighbors of a vertex requires scanning its entire row of length `V`. Doing this for all `V` vertices takes `V * O(V) = O(V^2)` total time.*
 
 ---
 
@@ -80,7 +80,7 @@ Consider a 4-vertex undirected graph:
   3 --- 2
 ```
 
-**Adjacency Matrix ($4 \times 4$):**
+**Adjacency Matrix (4 x 4):**
 ```text
 0 1 0 1
 1 0 1 0
@@ -141,4 +141,4 @@ java Practical8.Graph
 
 - Gained practical proficiency in implementing graph traversals in Java.
 - Understood the duality between queues (BFS) and stacks/recursion (DFS).
-- Analyzed the impact of Adjacency Matrix lookup cost ($O(V^2)$) on traversal performance.
+- Analyzed the impact of Adjacency Matrix lookup cost (`O(V^2)`) on traversal performance.

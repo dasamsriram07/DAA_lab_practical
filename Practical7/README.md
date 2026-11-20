@@ -2,9 +2,9 @@
 
 ## Overview
 
-The **Coin Change Problem (Minimum Coins Formulation)** requires finding the minimum number of coins needed to form a specified target amount $W$, given a fixed set of coin denominations $C = \{c_1, c_2, \dots, c_n\}$. Each denomination is assumed to be available in unlimited supply (unbounded choice).
+The **Coin Change Problem (Minimum Coins Formulation)** requires finding the minimum number of coins needed to form a specified target amount `W`, given a fixed set of coin denominations `coins = [c1, c2, ..., cn]`. Each denomination can be reused unlimited times.
 
-While a **Greedy Algorithm** (repeatedly taking the largest possible denomination) works for canonical currency systems like US coins, it fails on general denomination sets. Dynamic Programming guarantees the global optimal minimum for any arbitrary currency set.
+While a **Greedy Algorithm** (repeatedly taking the largest possible coin) works for some currency systems, it often fails on general denomination sets. Dynamic Programming guarantees finding the true minimum number of coins for any arbitrary set of denominations.
 
 ---
 
@@ -28,48 +28,50 @@ While a **Greedy Algorithm** (repeatedly taking the largest possible denominatio
 
 ## Why Greedy Fails (Motivating Example)
 
-Consider denominations $C = \{1, 5, 7\}$ and target amount $W = 11$:
+Consider denominations `coins = [1, 5, 7]` and target amount `W = 11`:
 - **Greedy Strategy**:
-  - Picks largest coin $\le 11$: $7$ (Remaining: $4$)
-  - Picks largest coin $\le 4$: $1 \times 4$ (Remaining: $0$)
-  - **Greedy Solution**: $7 + 1 + 1 + 1 + 1 = 11 \implies \mathbf{5 \text{ coins}}$.
+  - Picks largest coin `<= 11`: `7` (Remaining: `4`)
+  - Picks largest coin `<= 4`: `1 x 4` (Remaining: `0`)
+  - **Greedy Solution**: `7 + 1 + 1 + 1 + 1 = 11` -> **5 coins**.
 - **Dynamic Programming Solution**:
-  - Explores all optimal combinations.
-  - Picks $5 + 5 + 1 = 11 \implies \mathbf{3 \text{ coins}}$.
+  - Evaluates combinations systematically.
+  - Picks `5 + 5 + 1 = 11` -> **3 coins**.
 - **Conclusion**: Greedy produces a suboptimal result (5 coins vs. the optimal 3 coins).
 
 ---
 
 ## Dynamic Programming Formulation
 
-Let $T[i][j]$ represent the minimum number of coins needed to form amount $j$ ($0 \le j \le W$) using a subset of the first $i+1$ denominations ($0 \le i < n$).
+Let `T[i][j]` represent the minimum number of coins needed to form amount `j` (`0 <= j <= W`) using only the first `i + 1` denominations (`0 <= i < n`).
 
-### Base Cases (First Coin $coins[0]$)
-$$
-T[0][j] = \begin{cases}
-0 & \text{if } j = 0 \\
-j / coins[0] & \text{if } j \pmod{coins[0]} = 0 \\
-\infty \ (W + 1) & \text{otherwise (unreachable)}
-\end{cases}
-$$
+### Base Cases (First Denomination `coins[0]`)
+```text
+T[0][0] = 0
 
-### Recurrence Relation (For $i \ge 1$)
-For each coin $i$ and amount $j$:
+If j is divisible by coins[0]:
+    T[0][j] = j / coins[0]
+Else:
+    T[0][j] = Infinity  (amount cannot be formed with coins[0] alone)
+```
 
-$$
-T[i][j] = \begin{cases}
-T[i-1][j] & \text{if } j < coins[i] \\
-\min\Big(T[i-1][j], \; 1 + T[i][j - coins[i]]\Big) & \text{if } j \ge coins[i]
-\end{cases}
-$$
+### Recurrence Relation (For subsequent coins `i >= 1`)
+For each coin `i` and amount `j`:
 
-*Note: In the second term, we use $T[i][j - coins[i]]$ rather than $T[i-1][\dots]$ because a denomination can be reused multiple times.*
+```text
+If j < coins[i]:
+    T[i][j] = T[i - 1][j]
+
+If j >= coins[i]:
+    T[i][j] = min(T[i - 1][j], 1 + T[i][j - coins[i]])
+```
+
+*Note: In the second case, `T[i][j - coins[i]]` is referenced rather than `T[i - 1][...]` because the same coin `coins[i]` can be used multiple times.*
 
 ### Backtracking to Find Coins Used
-1. Start at cell $(i = n - 1, \text{amount} = W)$.
-2. While $\text{amount} > 0$ and $i \ge 0$:
-   - If $i > 0$ and $T[i][\text{amount}] == T[i - 1][\text{amount}]$, the $i$-th coin was not used; decrement $i \leftarrow i - 1$.
-   - Else, the $i$-th coin was included: increment `selected[i]`, and decrement $\text{amount} \leftarrow \text{amount} - coins[i]$.
+1. Start at table cell `(i = n - 1, amount = W)`.
+2. While `amount > 0` and `i >= 0`:
+   - If `i > 0` and `T[i][amount] == T[i - 1][amount]`, coin `i` was not used; move up: `i = i - 1`.
+   - Else, coin `i` was used: increment `selected[i]`, and reduce remaining amount: `amount = amount - coins[i]`.
 
 ---
 
@@ -77,8 +79,8 @@ $$
 
 | Metric | Complexity | Explanation |
 |---|:---:|---|
-| **Time Complexity** | $O(n \cdot W)$ | The algorithm fills a matrix of size $n \times (W + 1)$ with $O(1)$ operations per state. |
-| **Space Complexity** | $O(n \cdot W)$ | Space allocated for the 2D DP matrix $T$ and tracking array. *(Can be optimized to $O(W)$ using a 1D array).* |
+| **Time Complexity** | `O(n * W)` | The algorithm fills an `n x (W + 1)` table with constant-time operations per entry. |
+| **Space Complexity** | `O(n * W)` | 2D table `T` of size `n x (W + 1)` and tracking array. (Can be reduced to `O(W)` using a 1D array). |
 
 ---
 

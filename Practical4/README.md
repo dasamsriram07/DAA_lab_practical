@@ -2,11 +2,11 @@
 
 ## Overview
 
-The factorial of a non-negative integer $n$, denoted by $n!$, is the product of all positive integers less than or equal to $n$. Factorial computation is a classic computer science problem used to illustrate and contrast **iterative loop constructs** against **recursive function calls**.
+The factorial of a non-negative integer `n`, written as `n!`, is the product of all positive integers less than or equal to `n`. Factorial computation is a classic computer science problem used to illustrate and contrast **iterative loop constructs** against **recursive function calls**.
 
 This practical implements and evaluates factorial computation using both paradigms:
-1. **Iterative Formulation**: Accumulator variable updated across $n$ loop steps.
-2. **Recursive Formulation**: Self-referential functional decomposition with base condition.
+1. **Iterative Formulation**: Accumulator variable updated across `n` loop steps.
+2. **Recursive Formulation**: Self-referential functional decomposition with a base condition.
 
 ---
 
@@ -14,7 +14,7 @@ This practical implements and evaluates factorial computation using both paradig
 
 - Understand iterative vs. recursive problem-solving approaches.
 - Implement both iterative and recursive factorial algorithms in Java with dynamic user input.
-- Compare memory usage: CPU register/local variable vs. JVM Call Stack activation frames.
+- Compare memory usage: CPU registers / local variables vs. JVM Call Stack activation frames.
 - Analyze asymptotic time and space complexities.
 
 ---
@@ -30,24 +30,22 @@ This practical implements and evaluates factorial computation using both paradig
 
 ## Mathematical Formulation
 
-For any non-negative integer $n \in \mathbb{N}_0$:
+For any non-negative integer `n`:
 
-$$
-n! = \begin{cases} 
-1 & \text{if } n = 0 \text{ or } n = 1 \\
-n \times (n - 1)! & \text{if } n > 1 
-\end{cases}
-$$
+```text
+factorial(n) = 1                    if n = 0 or n = 1
+factorial(n) = n * factorial(n - 1)  if n > 1
+```
 
 ### 1. Iterative Approach
 - Uses a local variable `factorial = 1`.
 - Executes loop from `i = 1` to `n`: `factorial *= i`.
-- **Memory Footprint**: Strictly constant memory ($O(1)$) using a single integer counter.
+- **Memory Footprint**: Strictly constant memory (`O(1)`) using a single integer counter.
 
 ### 2. Recursive Approach
 - Evaluates base case: `if (n <= 1) return 1`.
 - Recursive step: `return n * fact(n - 1)`.
-- **Memory Footprint**: Allocates an activation frame on the JVM Call Stack for each invocation from $n$ down to $1$, resulting in $O(n)$ space. If $n$ is excessively large, this can trigger a `java.lang.StackOverflowError`.
+- **Memory Footprint**: Allocates an activation frame on the JVM Call Stack for each call from `n` down to `1`, resulting in `O(n)` memory. For very large values of `n`, this can cause a `StackOverflowError`.
 
 ---
 
@@ -55,8 +53,8 @@ $$
 
 | Method | Time Complexity | Auxiliary Space Complexity | Stack Frame Overhead | Stack Overflow Risk? |
 |---|:---:|:---:|:---:|:---:|
-| **Iterative** | $O(n)$ | $O(1)$ | None (in-place registers) | No |
-| **Recursive** | $O(n)$ | $O(n)$ | $n$ activation frames | Yes (for large $n$) |
+| **Iterative** | `O(n)` | `O(1)` | None (in-place registers) | No |
+| **Recursive** | `O(n)` | `O(n)` | `n` activation frames | Yes (for very large `n`) |
 
 ---
 
@@ -69,7 +67,9 @@ Enter the number which you want to know what is it's factorial:
 ```
 
 **Calculation Trace:**
-$$5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$$
+```text
+5! = 5 * 4 * 3 * 2 * 1 = 120
+```
 
 **Output:**
 ```text

@@ -22,7 +22,7 @@ To prevent cycle formation, Kruskal's algorithm employs the **Disjoint Set Union
 
 | File | Class Name | Description |
 |---|---|---|
-| `Krushkal.java` | `Kruskal` | Extracts undirected graph edges, sorts edges by weight, applies DSU for cycle prevention, and prints MST edges and total cost. |
+| `Krushkal.java` | `Krushkal` (alias `Kruskal`) | Extracts undirected graph edges, sorts edges by weight, applies DSU for cycle prevention, and prints MST edges and total cost. |
 
 ---
 
@@ -37,18 +37,20 @@ To prevent cycle formation, Kruskal's algorithm employs the **Disjoint Set Union
 
 3. **Disjoint Set Initialization**:
    - Each vertex starts as its own representative root:
-     $$\forall i \in [0, n-1]: \quad parent[i] = i$$
+     ```text
+     For each vertex i: parent[i] = i
+     ```
 
 4. **Greedy Edge Selection & Cycle Prevention**:
-   - Iterate through sorted edges. For edge $(u, v)$ with weight $w$:
-     - Find the root representative of $u$: `while (parent[x] != x) x = parent[x]`.
-     - Find the root representative of $v$: `while (parent[y] != y) y = parent[y]`.
-     - **If $x \ne y$**: Vertices belong to different connected components. Adding edge $(u, v)$ **does not create a cycle**.
-       - Union the components: `parent[x] = y`.
+   - Iterate through the sorted edges. For each edge `(u, v)` with weight `w`:
+     - Find the root representative of `u`: `while (parent[x] != x) x = parent[x]`.
+     - Find the root representative of `v`: `while (parent[y] != y) y = parent[y]`.
+     - **If x != y**: Vertices belong to different connected components. Adding edge `(u, v)` **does not create a cycle**.
+       - Merge components: `parent[x] = y`.
        - Add edge to MST and accumulate cost.
-       - Increment selected edge count (`count++`).
-     - **If $x == y$**: Vertices already share a common component. Adding this edge would form a cycle; **discard it**.
-   - Stop when $n - 1$ edges are successfully included.
+       - Increment selected edge counter (`count++`).
+     - **If x == y**: Vertices already share a common component. Adding this edge would form a cycle; **discard it**.
+   - Stop as soon as `n - 1` edges are successfully included.
 
 ---
 
@@ -56,12 +58,12 @@ To prevent cycle formation, Kruskal's algorithm employs the **Disjoint Set Union
 
 | Phase | Time Complexity (Implementation) | Time Complexity (Optimal) | Space Complexity |
 |---|:---:|:---:|:---:|
-| **Edge Extraction** | $O(V^2)$ | $O(E)$ | $O(E)$ |
-| **Edge Sorting** | $O(E^2)$ *(Bubble Sort)* | $O(E \log E)$ *(Merge/Quick Sort)* | $O(1)$ |
-| **Cycle Detection (DSU)** | $O(E \cdot V)$ *(Naive find)* | $O(E \cdot \alpha(V))$ *(Path compression + rank)* | $O(V)$ |
-| **Overall** | $O(V^2 + E^2)$ | $O(E \log E) \equiv O(E \log V)$ | $O(V + E)$ |
+| **Edge Extraction** | `O(V^2)` | `O(E)` | `O(E)` |
+| **Edge Sorting** | `O(E^2)` (Bubble Sort) | `O(E log E)` (Merge/Quick Sort) | `O(1)` |
+| **Cycle Detection (DSU)** | `O(E * V)` (Naive find) | `O(E * alpha(V))` (Path compression) | `O(V)` |
+| **Overall** | `O(V^2 + E^2)` | `O(E log E)` = `O(E log V)` | `O(V + E)` |
 
-*Note: In sparse graphs where $E \ll V^2$, Kruskal's algorithm with $O(E \log E)$ sorting is highly efficient.*
+*Note: In sparse graphs where `E` is much smaller than `V^2`, Kruskal's algorithm with `O(E log E)` sorting is very efficient.*
 
 ---
 
@@ -95,13 +97,13 @@ Consider a 4-vertex weighted graph:
 5. `(1 - 3)` with weight **15**
 
 ### Processing Steps:
-- **Edge 1: (2 - 3, wt 4)**: `find(2)=2 != find(3)=3`. $\implies$ **Include**. Union: `parent[2] = 3`. Total cost = 4.
-- **Edge 2: (0 - 3, wt 5)**: `find(0)=0 != find(3)=3`. $\implies$ **Include**. Union: `parent[0] = 3`. Total cost = 4 + 5 = 9.
-- **Edge 3: (0 - 2, wt 6)**: `find(0)=3 == find(2)=3`. $\implies$ **Cycle detected! Discard**.
-- **Edge 4: (0 - 1, wt 10)**: `find(0)=3 != find(1)=1`. $\implies$ **Include**. Union: `parent[3] = 1`. Total cost = 9 + 10 = 19.
-- $V - 1 = 3$ edges reached. Stop.
+- **Edge 1: (2 - 3, wt 4)**: `find(2) != find(3)`. -> **Include**. Set `parent[2] = 3`. Total cost = 4.
+- **Edge 2: (0 - 3, wt 5)**: `find(0) != find(3)`. -> **Include**. Set `parent[0] = 3`. Total cost = 4 + 5 = 9.
+- **Edge 3: (0 - 2, wt 6)**: `find(0) == find(2)` (both have root 3). -> **Cycle detected! Discard**.
+- **Edge 4: (0 - 1, wt 10)**: `find(0) != find(1)`. -> **Include**. Set `parent[3] = 1`. Total cost = 9 + 10 = 19.
+- `V - 1 = 3` edges reached. Complete.
 
-**Minimum Cost:** $\mathbf{19}$ *(Identical to Prim's MST)*.
+**Minimum Cost:** **19** (Matches Prim's MST result).
 
 ---
 
@@ -135,8 +137,8 @@ From the root directory (`DAA_LAB`):
 # Compile
 javac Practical10/Krushkal.java
 
-# Run
-java Practical10.Kruskal
+# Run using Krushkal or Kruskal
+java Practical10.Krushkal
 ```
 
 ---
