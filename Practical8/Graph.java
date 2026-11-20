@@ -1,3 +1,4 @@
+package Practical8;
 import java.util.*;
 public class Graph {
     int n, a[][];

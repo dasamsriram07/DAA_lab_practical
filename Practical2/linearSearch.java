@@ -1,7 +1,8 @@
+package Practical2;
 import java.util.*;
 public class linearSearch{
     public static int ls(int arr[], int key){
-        for(int i=0;i<=arr.length;i++){
+        for(int i=0;i<arr.length;i++){
             if(arr[i]==key){
                 return i;
             }

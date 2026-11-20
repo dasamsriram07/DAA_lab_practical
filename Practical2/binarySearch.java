@@ -1,3 +1,4 @@
+package Practical2;
 import java.util.*;
 public class binarySearch {
     public static int bs(int arr[], int key) {

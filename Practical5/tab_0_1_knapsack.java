@@ -1,3 +1,4 @@
+package Practical5;
 import java.util.*;
 public class tab_0_1_knapsack {//O(nW)
 
@@ -8,11 +9,10 @@ public class tab_0_1_knapsack {//O(nW)
         int dp[][] = new int[n+1][W+1];
         keep = new boolean[n + 1][W + 1];
 
-        for(int i=0;i<
-            dp.length;i++){ //0th col
+        for(int i = 0; i < dp.length; i++){ //0th col
             dp[i][0] = 0;
         }
-        for(int j=0;j<dp.length;j++){ //0th row
+        for(int j = 0; j < dp[0].length; j++){ //0th row
             dp[0][j] = 0;
         }
 

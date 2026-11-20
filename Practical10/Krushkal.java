@@ -1,6 +1,7 @@
+package Practical10;
 import java.util.Scanner;
 
-class Kruskal {
+public class Krushkal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -71,6 +72,8 @@ class Kruskal {
             System.out.println("Minimum Cost: " + cost);
     }
 }
+
+class Kruskal extends Krushkal {}
 
 // Enter number of vertices: 4
 // Enter weighted adjacency matrix (0 for no edge):

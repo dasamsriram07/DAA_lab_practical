@@ -1,3 +1,4 @@
+package Practical1;
 import java.util.*;
 public class insertion_sort {
     public static void insertion(int arr[]){

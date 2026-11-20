@@ -1,3 +1,4 @@
+package Practical7;
 import java.util.*;
 
 public class coinChange {

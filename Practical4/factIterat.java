@@ -1,3 +1,4 @@
+package Practical4;
 import java.util.*;
 
 public class factIterat {

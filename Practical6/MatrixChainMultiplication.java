@@ -1,3 +1,4 @@
+package Practical6;
 import java.util.*;
 public class MatrixChainMultiplication { //O(n^3)
     static int split[][];
